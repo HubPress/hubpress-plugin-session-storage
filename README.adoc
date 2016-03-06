@@ -1,0 +1,8 @@
+= HubPress: session storage
+
+Store the session of HubPress in the session storage of the browser
+
+== TODO
+
+. Complete this README
+. Add tests
