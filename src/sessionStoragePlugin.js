@@ -2,6 +2,8 @@ export function sessionStoragePlugin(hubpress) {
 
   // store credentials in localstorage
   hubpress.on('receiveAuthentication', opts => {
+    console.info('SessionStorage Plugin - receiveAuthentication');
+    console.log('receiveAuthentication', opts);
     if (opts.data.authentication.isAuthenticated) {
       sessionStorage.setItem(`${opts.state.application.config.meta.repositoryName}-authentication`, JSON.stringify({
         credentials: {
@@ -16,7 +18,8 @@ export function sessionStoragePlugin(hubpress) {
   });
 
   hubpress.on('requestSavedAuth', opts => {
-    console.log('SessionStorage plugin requestSavedAuth', opts);
+    console.info('SessionStorage Plugin - requestSavedAuth');
+    console.log('requestSavedAuth', opts);
     let authentication;
     const storedData = sessionStorage.getItem(`${opts.data.config.meta.repositoryName}-authentication`);
 
@@ -38,6 +41,8 @@ export function sessionStoragePlugin(hubpress) {
   })
 
   hubpress.on('requestLogout', opts => {
+    console.info('SessionStorage Plugin - requestLogout');
+    console.log('requestLogout', opts);
     sessionStorage.removeItem(`${opts.state.application.config.meta.repositoryName}-authentication`);
     return opts;
   })
